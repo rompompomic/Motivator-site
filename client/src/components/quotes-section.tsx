@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import chineseImage from "@assets/generated_images/Ancient_Chinese_landscape_photo_4dd09cea.png";
 import edisonImage from "@assets/generated_images/Thomas_Edison_historical_portrait_937c5198.png";
+import napoleonHillImage from "@assets/generated_images/Napoleon_Hill_historical_portrait_3443c78c.png";
 
 const quotes = [
   {
@@ -36,7 +37,7 @@ const quotes = [
   {
     text: "Не ждите. Время никогда не будет подходящим.",
     author: "Наполеон Хилл",
-    image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=400",
+    image: napoleonHillImage,
     color: "border-matrix"
   }
 ];
