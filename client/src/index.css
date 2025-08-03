@@ -1,0 +1,301 @@
+/* Font imports */
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Space+Grotesk:wght@300;400;500;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: hsl(0, 0%, 5%);
+  --foreground: hsl(0, 0%, 98%);
+  --muted: hsl(120, 100%, 15%);
+  --muted-foreground: hsl(120, 5%, 64%);
+  --popover: hsl(0, 0%, 5%);
+  --popover-foreground: hsl(0, 0%, 98%);
+  --card: hsl(0, 0%, 10%);
+  --card-foreground: hsl(0, 0%, 98%);
+  --border: hsl(120, 100%, 25%);
+  --input: hsl(0, 0%, 10%);
+  --primary: hsl(120, 100%, 25%);
+  --primary-foreground: hsl(0, 0%, 5%);
+  --secondary: hsl(0, 0%, 10%);
+  --secondary-foreground: hsl(0, 0%, 98%);
+  --accent: hsl(120, 100%, 39%);
+  --accent-foreground: hsl(0, 0%, 5%);
+  --destructive: hsl(0, 84%, 60%);
+  --destructive-foreground: hsl(0, 0%, 98%);
+  --ring: hsl(120, 100%, 25%);
+  --radius: 0.5rem;
+
+  /* Custom glitch colors */
+  --matrix-green: hsl(120, 100%, 25%);
+  --acid-green: hsl(120, 100%, 39%);
+  --emerald-deep: hsl(165, 76%, 42%);
+  --glitch-pink: hsl(300, 100%, 50%);
+  --neon-yellow: hsl(60, 100%, 50%);
+  --dark-bg: hsl(0, 0%, 5%);
+  --dark-secondary: hsl(0, 0%, 10%);
+}
+
+.dark {
+  --background: hsl(0, 0%, 5%);
+  --foreground: hsl(0, 0%, 98%);
+  --muted: hsl(120, 100%, 15%);
+  --muted-foreground: hsl(120, 5%, 64%);
+  --popover: hsl(0, 0%, 5%);
+  --popover-foreground: hsl(0, 0%, 98%);
+  --card: hsl(0, 0%, 10%);
+  --card-foreground: hsl(0, 0%, 98%);
+  --border: hsl(120, 100%, 25%);
+  --input: hsl(0, 0%, 10%);
+  --primary: hsl(120, 100%, 25%);
+  --primary-foreground: hsl(0, 0%, 5%);
+  --secondary: hsl(0, 0%, 10%);
+  --secondary-foreground: hsl(0, 0%, 98%);
+  --accent: hsl(120, 100%, 39%);
+  --accent-foreground: hsl(0, 0%, 5%);
+  --destructive: hsl(0, 84%, 60%);
+  --destructive-foreground: hsl(0, 0%, 98%);
+  --ring: hsl(120, 100%, 25%);
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply font-sans antialiased bg-background text-foreground overflow-x-hidden;
+    font-family: 'Space Grotesk', sans-serif;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@layer utilities {
+  /* Glitch animation keyframes */
+  @keyframes glitch {
+    0% { transform: translate(0); }
+    20% { transform: translate(-2px, 2px); }
+    40% { transform: translate(-2px, -2px); }
+    60% { transform: translate(2px, 2px); }
+    80% { transform: translate(2px, -2px); }
+    100% { transform: translate(0); }
+  }
+  
+  @keyframes flicker {
+    0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
+      text-shadow: 
+        -1px -1px 0 hsl(120, 100%, 25%),
+        1px -1px 0 hsl(120, 100%, 25%),
+        -1px 1px 0 hsl(120, 100%, 25%),
+        1px 1px 0 hsl(120, 100%, 25%),
+        0 0 15px hsl(120, 100%, 25%);
+    }
+    20%, 24%, 55% {
+      text-shadow: none;
+    }
+  }
+  
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-20px); }
+  }
+  
+  @keyframes noise {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.8; }
+  }
+
+  @keyframes fadeInOut {
+    0%, 100% { opacity: 0; transform: translateY(50px); }
+    50% { opacity: 0.3; transform: translateY(-20px); }
+  }
+
+  /* Custom utility classes */
+  .glitch-text {
+    position: relative;
+    color: hsl(120, 100%, 25%);
+  }
+  
+  .glitch-text::before,
+  .glitch-text::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+  
+  .glitch-text::before {
+    animation: glitch 0.3s infinite linear alternate-reverse;
+    color: hsl(300, 100%, 50%);
+    z-index: -1;
+  }
+  
+  .glitch-text::after {
+    animation: glitch 0.3s infinite linear alternate-reverse;
+    color: hsl(60, 100%, 50%);
+    z-index: -2;
+    top: 2px;
+    left: 2px;
+  }
+  
+  .noise-bg {
+    background-image: 
+      radial-gradient(circle at 1px 1px, rgba(255,255,255,0.15) 1px, transparent 0);
+    background-size: 20px 20px;
+    animation: noise 0.2s infinite;
+  }
+  
+  .vhs-lines {
+    background: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(0, 255, 65, 0.03) 2px,
+      rgba(0, 255, 65, 0.03) 4px
+    );
+  }
+  
+  .brutal-shadow {
+    box-shadow: 
+      8px 8px 0 hsl(120, 100%, 25%),
+      16px 16px 0 hsl(0, 0%, 10%);
+  }
+  
+  .chat-container {
+    backdrop-filter: blur(10px);
+    border: 2px solid hsl(120, 100%, 25%);
+    box-shadow: 
+      0 0 20px hsl(120, 100%, 25%),
+      inset 0 0 20px hsla(120, 100%, 25%, 0.1);
+  }
+  
+  .message-bubble {
+    background: linear-gradient(135deg, hsl(0, 0%, 10%), hsl(0, 0%, 5%));
+    border-left: 3px solid hsl(120, 100%, 25%);
+  }
+  
+  .floating-element {
+    animation: float 6s ease-in-out infinite;
+  }
+  
+  .neon-glow {
+    text-shadow: 
+      0 0 5px hsl(120, 100%, 25%),
+      0 0 10px hsl(120, 100%, 25%),
+      0 0 15px hsl(120, 100%, 25%),
+      0 0 20px hsl(120, 100%, 25%);
+  }
+  
+  .distorted-block {
+    clip-path: polygon(0 0, 95% 0, 100% 100%, 5% 100%);
+  }
+
+  .animate-glitch {
+    animation: glitch 0.3s infinite linear alternate-reverse;
+  }
+
+  .animate-flicker {
+    animation: flicker 2s infinite linear;
+  }
+
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  .animate-noise {
+    animation: noise 0.2s infinite;
+  }
+
+  .animate-fade-in-out {
+    animation: fadeInOut 8s ease-in-out;
+  }
+
+  /* Custom scrollbar */
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 4px;
+  }
+  
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: hsl(0, 0%, 10%);
+  }
+  
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background: hsl(120, 100%, 25%);
+    border-radius: 2px;
+  }
+
+  /* Color utilities */
+  .text-matrix {
+    color: hsl(120, 100%, 25%);
+  }
+
+  .text-acid {
+    color: hsl(120, 100%, 39%);
+  }
+
+  .text-emerald-deep {
+    color: hsl(165, 76%, 42%);
+  }
+
+  .text-glitch-pink {
+    color: hsl(300, 100%, 50%);
+  }
+
+  .text-neon-yellow {
+    color: hsl(60, 100%, 50%);
+  }
+
+  .bg-matrix {
+    background-color: hsl(120, 100%, 25%);
+  }
+
+  .bg-acid {
+    background-color: hsl(120, 100%, 39%);
+  }
+
+  .bg-emerald-deep {
+    background-color: hsl(165, 76%, 42%);
+  }
+
+  .bg-glitch-pink {
+    background-color: hsl(300, 100%, 50%);
+  }
+
+  .bg-dark-bg {
+    background-color: hsl(0, 0%, 5%);
+  }
+
+  .bg-dark-secondary {
+    background-color: hsl(0, 0%, 10%);
+  }
+
+  .border-matrix {
+    border-color: hsl(120, 100%, 25%);
+  }
+
+  .border-acid {
+    border-color: hsl(120, 100%, 39%);
+  }
+
+  .border-emerald-deep {
+    border-color: hsl(165, 76%, 42%);
+  }
+
+  .border-glitch-pink {
+    border-color: hsl(300, 100%, 50%);
+  }
+}
+
+.font-mono {
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.font-grotesk {
+  font-family: 'Space Grotesk', sans-serif;
+}
