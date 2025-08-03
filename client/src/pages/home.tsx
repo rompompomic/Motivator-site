@@ -1,28 +1,36 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
+import { Button } from "@/components/ui/button";
 import GlitchText from "@/components/glitch-text";
-import ChatInterface from "@/components/chat-interface";
+import MatrixRain from "@/components/matrix-rain";
+import BackgroundVideo from "@/components/background-video";
+import CustomCursor from "@/components/custom-cursor";
+import FilmGrain from "@/components/film-grain";
+import WatchingEye from "@/components/watching-eye";
 import FloatingPhrases from "@/components/floating-phrases";
 import QuotesSection from "@/components/quotes-section";
-import BackgroundVideo from "@/components/background-video";
 import ScrollingQuotes from "@/components/scrolling-quotes";
+import ChatInterface from "@/components/chat-interface";
 import MotivationTracker from "@/components/motivation-tracker";
-import MatrixRain from "@/components/matrix-rain";
 import HeroPopup from "@/components/hero-popup";
-import CustomCursor from "@/components/custom-cursor";
-import WatchingEye from "@/components/watching-eye";
-import FilmGrain from "@/components/film-grain";
+import { useEffect } from "react";
 
 export default function Home() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
 
   useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      setMousePosition({ x: e.clientX, y: e.clientY });
-    };
+    // Ensure we start at the top
+    window.scrollTo(0, 0);
 
-    window.addEventListener('mousemove', handleMouseMove);
-    return () => window.removeEventListener('mousemove', handleMouseMove);
+    // Enable smooth scroll after a brief delay
+    const timer = setTimeout(() => {
+      document.documentElement.classList.add('smooth-scroll');
+    }, 100);
+
+    return () => {
+      clearTimeout(timer);
+      document.documentElement.classList.remove('smooth-scroll');
+    };
   }, []);
 
   const parallaxElements = [
@@ -60,7 +68,7 @@ export default function Home() {
             }}
           />
         ))}
-        
+
         <motion.div 
           className="text-center z-10 max-w-4xl"
           initial={{ opacity: 0, y: 50 }}
@@ -73,7 +81,7 @@ export default function Home() {
           >
             ЖИВОЙ
           </GlitchText>
-          
+
           <motion.div 
             className="mb-12 distorted-block bg-dark-secondary bg-opacity-80 p-8 mx-auto max-w-2xl"
             initial={{ opacity: 0, scale: 0.9 }}
@@ -87,7 +95,7 @@ export default function Home() {
               ты обязан быть живым."
             </p>
           </motion.div>
-          
+
           <motion.div 
             className="space-y-4 text-lg md:text-xl opacity-80"
             initial={{ opacity: 0 }}
@@ -99,7 +107,7 @@ export default function Home() {
             <p className="text-matrix">Стань собой</p>
           </motion.div>
         </motion.div>
-        
+
         {/* Scroll indicator */}
         <motion.div 
           className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
@@ -123,7 +131,7 @@ export default function Home() {
               <GlitchText className="text-4xl md:text-5xl font-orbitron font-bold">
                 ЧТО ЗДЕСЬ?
               </GlitchText>
-              
+
               <div className="space-y-4 text-lg leading-relaxed">
                 {[
                   { text: "ИИ-помощник, который не будет читать лекции", color: "text-acid" },
@@ -145,7 +153,7 @@ export default function Home() {
                 ))}
               </div>
             </motion.div>
-            
+
             <motion.div 
               className="relative"
               initial={{ opacity: 0, x: 50 }}
@@ -159,17 +167,17 @@ export default function Home() {
                   <div className="w-3 h-3 bg-matrix rounded-full animate-pulse"></div>
                   <span className="font-orbitron text-matrix font-bold">AI_MENTOR</span>
                 </div>
-                
+
                 <div className="message-bubble p-4 rounded">
                   <p className="text-sm opacity-60 mb-2">Пользователь:</p>
                   <p>"Не могу доделать свой проект..."</p>
                 </div>
-                
+
                 <div className="message-bubble p-4 rounded">
                   <p className="text-sm text-matrix mb-2">AI:</p>
                   <p>"Окей. Ты уже на 70% пути. Что именно останавливает — страх, усталость, скука? Давай разберёмся."</p>
                 </div>
-                
+
                 <div className="flex items-center space-x-2 text-matrix">
                   <div className="w-2 h-2 bg-matrix rounded-full animate-ping"></div>
                   <span className="text-sm">Печатает...</span>
