@@ -107,8 +107,8 @@ export default function ChatInterface() {
                   {message.sender === 'user' ? (
                     <div className="flex items-start space-x-3 justify-end">
                       <div>
-                        <p className="text-sm text-acid mb-1 text-right">Ты</p>
-                        <p className="bg-acid bg-opacity-80 p-3 rounded">{message.text}</p>
+                        <p className="text-sm text-green-500 mb-1 text-right">Ты</p>
+                        <p className="bg-green-500 bg-opacity-80 p-3 rounded">{message.text}</p>
                       </div>
                       <div className="w-8 h-8 bg-acid rounded-full flex items-center justify-center overflow-hidden">
                         <img 
