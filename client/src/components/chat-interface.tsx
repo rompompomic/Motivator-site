@@ -61,7 +61,7 @@ export default function ChatInterface() {
         
         {/* Chat Container */}
         <motion.div 
-          className="chat-container bg-dark-secondary bg-opacity-90 rounded-lg p-6 h-170 flex flex-col"
+          className="chat-container bg-dark-secondary bg-opacity-90 rounded-lg p-6 h-[600px] flex flex-col"
           initial={{ opacity: 0, scale: 0.9 }}
           whileInView={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.6 }}
@@ -108,7 +108,7 @@ export default function ChatInterface() {
                     <div className="flex items-start space-x-3 justify-end">
                       <div>
                         <p className="text-sm text-acid mb-1 text-right">Ты</p>
-                        <p className="bg-acid bg-opacity-10 p-3 rounded">{message.text}</p>
+                        <p className="bg-acid bg-opacity-80 p-3 rounded">{message.text}</p>
                       </div>
                       <div className="w-8 h-8 bg-acid rounded-full flex items-center justify-center overflow-hidden">
                         <img 
