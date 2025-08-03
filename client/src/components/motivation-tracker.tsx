@@ -19,24 +19,51 @@ export default function MotivationTracker() {
     // Load goals from localStorage
     const savedGoals = localStorage.getItem('motivationGoals');
     if (savedGoals) {
-      setGoals(JSON.parse(savedGoals));
-    }
-    
-    const savedLevel = localStorage.getItem('motivationLevel');
-    if (savedLevel) {
-      setMotivationLevel(parseInt(savedLevel));
+      try {
+        const parsedGoals = JSON.parse(savedGoals);
+        setGoals(parsedGoals);
+        
+        // Calculate motivation level based on goals
+        const completedGoals = parsedGoals.filter((goal: Goal) => goal.completed).length;
+        const totalGoals = parsedGoals.length;
+        
+        if (totalGoals === 0) {
+          setMotivationLevel(50); // Default level when no goals
+        } else {
+          const baseLevel = 30;
+          const completionBonus = (completedGoals / totalGoals) * 50;
+          const goalBonus = Math.min(totalGoals * 2, 20);
+          setMotivationLevel(Math.min(100, baseLevel + completionBonus + goalBonus));
+        }
+      } catch (error) {
+        console.error('Error parsing saved goals:', error);
+        setGoals([]);
+        setMotivationLevel(50);
+      }
+    } else {
+      // No saved goals, reset to default
+      setGoals([]);
+      setMotivationLevel(50);
     }
   }, []);
 
   useEffect(() => {
-    // Save goals to localStorage
+    // Save goals to localStorage and recalculate motivation
     localStorage.setItem('motivationGoals', JSON.stringify(goals));
+    
+    // Recalculate motivation level based on current goals
+    const completedGoals = goals.filter(goal => goal.completed).length;
+    const totalGoals = goals.length;
+    
+    if (totalGoals === 0) {
+      setMotivationLevel(50); // Reset to default when no goals
+    } else {
+      const baseLevel = 30;
+      const completionBonus = (completedGoals / totalGoals) * 50;
+      const goalBonus = Math.min(totalGoals * 2, 20);
+      setMotivationLevel(Math.min(100, baseLevel + completionBonus + goalBonus));
+    }
   }, [goals]);
-
-  useEffect(() => {
-    // Save motivation level to localStorage
-    localStorage.setItem('motivationLevel', motivationLevel.toString());
-  }, [motivationLevel]);
 
   const addGoal = () => {
     if (newGoal.trim()) {
@@ -48,25 +75,13 @@ export default function MotivationTracker() {
       };
       setGoals(prev => [goal, ...prev]);
       setNewGoal("");
-      // Boost motivation when adding a goal
-      setMotivationLevel(prev => Math.min(100, prev + 5));
     }
   };
 
   const toggleGoal = (id: string) => {
     setGoals(prev => prev.map(goal => {
       if (goal.id === id) {
-        const wasCompleted = goal.completed;
-        const newCompleted = !goal.completed;
-        
-        // Update motivation based on completion
-        if (!wasCompleted && newCompleted) {
-          setMotivationLevel(prev => Math.min(100, prev + 10));
-        } else if (wasCompleted && !newCompleted) {
-          setMotivationLevel(prev => Math.max(0, prev - 5));
-        }
-        
-        return { ...goal, completed: newCompleted };
+        return { ...goal, completed: !goal.completed };
       }
       return goal;
     }));
@@ -117,10 +132,10 @@ export default function MotivationTracker() {
               </div>
             </div>
             <p className="text-sm opacity-70">
-              {motivationLevel >= 80 ? "🔥 Ты на огне!" : 
-               motivationLevel >= 60 ? "💪 Хорошая форма!" :
-               motivationLevel >= 40 ? "⚡ Набираешь ход!" :
-               motivationLevel >= 20 ? "🌱 Начинаешь путь!" : "💤 Время проснуться!"}
+              {motivationLevel >= 80 ? "Ты на огне!" : 
+               motivationLevel >= 60 ? "Хорошая форма!" :
+               motivationLevel >= 40 ? "Набираешь ход!" :
+               motivationLevel >= 20 ? "Начинаешь путь!" : "Время проснуться!"}
             </p>
           </div>
 
