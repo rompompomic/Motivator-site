@@ -37,13 +37,11 @@ export default function Home() {
       <BackgroundVideo />
       <MatrixRain />
       <div className="fixed inset-0 noise-bg vhs-lines digital-grid vhs-effect pointer-events-none z-10"></div>
-      
       <FloatingPhrases />
       <HeroPopup />
       <CustomCursor />
       <WatchingEye />
       <FilmGrain />
-      
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center justify-center px-4 py-20">
         {/* Floating geometric shapes */}
@@ -111,7 +109,6 @@ export default function Home() {
           <div className="text-matrix text-2xl">⬇</div>
         </motion.div>
       </section>
-      
       {/* About Section */}
       <section className="relative py-20 px-4">
         <div className="max-w-6xl mx-auto">
@@ -182,12 +179,10 @@ export default function Home() {
           </div>
         </div>
       </section>
-      
       <QuotesSection />
       <ScrollingQuotes />
       <MotivationTracker />
       <ChatInterface />
-      
       {/* Footer */}
       <footer className="relative py-12 px-4 border-t border-matrix">
         <motion.div 
@@ -202,7 +197,7 @@ export default function Home() {
           <div className="flex justify-center space-x-6 text-sm">
             <span className="text-matrix">Made with chaos & love</span>
             <span className="text-acid">●</span>
-            <span className="text-emerald-deep">2024</span>
+            <span className="text-emerald-deep">2025</span>
           </div>
         </motion.div>
       </footer>
