@@ -35,7 +35,23 @@ export function useOpenAIChat() {
     setIsLoading(true);
 
     try {
-      const response = await apiRequest('POST', '/api/chat', { message: text });
+      // Use Netlify function endpoint in production, local API in development
+      const apiEndpoint = import.meta.env.PROD 
+        ? '/.netlify/functions/chat' 
+        : '/api/chat';
+        
+      const response = await fetch(apiEndpoint, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ message: text }),
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
       const data = await response.json();
 
       // Add AI response

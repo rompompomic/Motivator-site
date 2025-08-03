@@ -68,5 +68,29 @@ Preferred communication style: Simple, everyday language.
 - **TanStack Query**: Powerful data synchronization for React applications
 
 ### Third-party Assets
-- **Unsplash**: Image hosting for profile pictures in quotes section
+- **Generated Images**: AI-сгенерированные изображения для аватаров и фонов
 - **Custom Fonts**: Industrial/grunge typography for authentic aesthetic
+
+## Deployment Configuration
+
+### Netlify Deployment
+- **Build Command**: `npm run build`
+- **Publish Directory**: `dist`
+- **Functions Directory**: `netlify/functions`
+- **Node Version**: 18
+
+### Environment Variables Required
+- `OPENAI_API_KEY`: OpenAI API key for chat functionality
+
+### Files Created for Deployment
+- `netlify.toml`: Netlify configuration with build settings and redirects
+- `netlify/functions/chat.js`: Serverless function for OpenAI API calls
+- `_redirects`: URL redirection rules for SPA routing
+- `netlify-deploy-guide.md`: Comprehensive deployment guide
+- `.env.example`: Environment variables template
+
+### Production Optimizations
+- Conditional API endpoint routing (local dev vs production)
+- Static asset optimization with proper imports via @assets alias
+- CORS headers configuration for serverless functions
+- SPA routing with fallback to index.html
