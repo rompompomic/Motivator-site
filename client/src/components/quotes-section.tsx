@@ -16,8 +16,26 @@ const quotes = [
   {
     text: "Воображение важнее знания. Знание ограничено, воображение же охватывает весь мир.",
     author: "Альберт Эйнштейн",
-    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=400",
+    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Albert_Einstein_Head.jpg/400px-Albert_Einstein_Head.jpg",
     color: "border-emerald-deep"
+  },
+  {
+    text: "Я не терплю неудач. Я просто нахожу 10 000 способов, которые не работают.",
+    author: "Томас Эдисон",
+    image: "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=400",
+    color: "border-glitch-pink"
+  },
+  {
+    text: "Лучшее время посадить дерево было 20 лет назад. Второе лучшее время — сейчас.",
+    author: "Китайская пословица",
+    image: "https://images.unsplash.com/photo-1566492031773-4f4e44671d66?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=400",
+    color: "border-acid"
+  },
+  {
+    text: "Не ждите. Время никогда не будет подходящим.",
+    author: "Наполеон Хилл",
+    image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=400",
+    color: "border-matrix"
   }
 ];
 
@@ -41,22 +59,44 @@ export default function QuotesSection() {
             <motion.div
               key={index}
               className="distorted-block bg-dark-secondary bg-opacity-80 p-6 floating-element"
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: index * 0.2 }}
+              initial={{ opacity: 0, y: 50, rotateX: -15 }}
+              whileInView={{ opacity: 1, y: 0, rotateX: 0 }}
+              transition={{ duration: 0.8, delay: index * 0.2 }}
               viewport={{ once: true }}
-              style={{ animationDelay: `${index * 2}s` }}
+              whileHover={{ 
+                scale: 1.05,
+                rotateY: 5,
+                transition: { duration: 0.3 }
+              }}
+              style={{ 
+                animationDelay: `${index * 2}s`,
+                perspective: "1000px"
+              }}
             >
-              <img 
+              <motion.img 
                 src={quote.image}
                 alt={`${quote.author} portrait`} 
                 className={`w-24 h-24 rounded-full mx-auto mb-4 border-2 ${quote.color}`}
+                whileHover={{ scale: 1.1, rotate: 5 }}
+                transition={{ duration: 0.3 }}
               />
               <blockquote className="text-center">
-                <p className="text-lg mb-4 italic">"{quote.text}"</p>
-                <cite className={`${quote.color.replace('border-', 'text-')} font-mono`}>
+                <motion.p 
+                  className="text-lg mb-4 italic font-rajdhani"
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
+                  transition={{ duration: 0.6, delay: index * 0.3 + 0.5 }}
+                >
+                  "{quote.text}"
+                </motion.p>
+                <motion.cite 
+                  className={`${quote.color.replace('border-', 'text-')} font-orbitron font-bold text-sm`}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: index * 0.3 + 0.7 }}
+                >
                   — {quote.author}
-                </cite>
+                </motion.cite>
               </blockquote>
             </motion.div>
           ))}

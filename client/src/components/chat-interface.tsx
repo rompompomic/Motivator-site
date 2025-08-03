@@ -47,7 +47,7 @@ export default function ChatInterface() {
     <section className="relative py-20 px-4">
       <div className="max-w-4xl mx-auto">
         <motion.h2 
-          className="text-4xl md:text-5xl font-mono font-bold text-center mb-16 glitch-text neon-glow"
+          className="text-4xl md:text-5xl font-orbitron font-black text-center mb-16 glitch-text neon-glow"
           data-text="НАЧНИ ДИАЛОГ"
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -68,9 +68,19 @@ export default function ChatInterface() {
           {/* Chat Header */}
           <div className="flex items-center justify-between border-b border-matrix pb-4 mb-4">
             <div className="flex items-center space-x-3">
-              <div className="w-4 h-4 bg-matrix rounded-full animate-pulse"></div>
-              <span className="font-mono text-matrix text-lg">AI_MENTOR</span>
-              <span className="text-xs opacity-60">онлайн</span>
+              <motion.div 
+                className="w-4 h-4 bg-matrix rounded-full"
+                animate={{ scale: [1, 1.2, 1], opacity: [1, 0.7, 1] }}
+                transition={{ duration: 2, repeat: Infinity }}
+              ></motion.div>
+              <span className="font-orbitron text-matrix text-lg font-bold">AI_MENTOR</span>
+              <motion.span 
+                className="text-xs opacity-60 font-rajdhani"
+                animate={{ opacity: [0.6, 1, 0.6] }}
+                transition={{ duration: 3, repeat: Infinity }}
+              >
+                онлайн
+              </motion.span>
             </div>
             <Button
               onClick={clearMessages}

@@ -4,6 +4,9 @@ import GlitchText from "@/components/glitch-text";
 import ChatInterface from "@/components/chat-interface";
 import FloatingPhrases from "@/components/floating-phrases";
 import QuotesSection from "@/components/quotes-section";
+import BackgroundVideo from "@/components/background-video";
+import ScrollingQuotes from "@/components/scrolling-quotes";
+import MotivationTracker from "@/components/motivation-tracker";
 
 export default function Home() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
@@ -26,7 +29,8 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-dark-bg text-white overflow-x-hidden">
       {/* Background Effects */}
-      <div className="fixed inset-0 noise-bg vhs-lines pointer-events-none z-0"></div>
+      <BackgroundVideo />
+      <div className="fixed inset-0 noise-bg vhs-lines pointer-events-none z-10"></div>
       
       <FloatingPhrases />
       
@@ -56,7 +60,7 @@ export default function Home() {
           transition={{ duration: 1 }}
         >
           <GlitchText 
-            className="text-6xl md:text-8xl font-mono font-bold mb-8 neon-glow"
+            className="text-6xl md:text-8xl font-orbitron font-black mb-8 neon-glow"
             animate={true}
           >
             ЖИВОЙ
@@ -68,10 +72,10 @@ export default function Home() {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.5 }}
           >
-            <p className="text-2xl md:text-3xl font-light text-matrix mb-4 animate-flicker">
+            <p className="text-2xl md:text-3xl font-rajdhani font-light text-matrix mb-4 animate-flicker">
               "Ты не обязан быть идеальным —
             </p>
-            <p className="text-2xl md:text-3xl font-light text-acid">
+            <p className="text-2xl md:text-3xl font-rajdhani font-light text-acid">
               ты обязан быть живым."
             </p>
           </motion.div>
@@ -109,7 +113,7 @@ export default function Home() {
               transition={{ duration: 0.6 }}
               viewport={{ once: true }}
             >
-              <GlitchText className="text-4xl md:text-5xl font-mono font-bold">
+              <GlitchText className="text-4xl md:text-5xl font-orbitron font-bold">
                 ЧТО ЗДЕСЬ?
               </GlitchText>
               
@@ -122,9 +126,10 @@ export default function Home() {
                 ].map((item, index) => (
                   <motion.p 
                     key={index}
-                    className="brutal-shadow bg-dark-secondary p-6"
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
+                    className="brutal-shadow bg-dark-secondary p-6 font-rajdhani text-lg"
+                    initial={{ opacity: 0, y: 30, rotateX: -10 }}
+                    whileInView={{ opacity: 1, y: 0, rotateX: 0 }}
+                    whileHover={{ scale: 1.02, rotateX: 2 }}
                     transition={{ duration: 0.4, delay: index * 0.1 }}
                     viewport={{ once: true }}
                   >
@@ -145,7 +150,7 @@ export default function Home() {
               <div className="chat-container bg-dark-secondary bg-opacity-90 rounded-lg p-6 space-y-4">
                 <div className="flex items-center space-x-3 border-b border-matrix pb-3">
                   <div className="w-3 h-3 bg-matrix rounded-full animate-pulse"></div>
-                  <span className="font-mono text-matrix">AI_MENTOR</span>
+                  <span className="font-orbitron text-matrix font-bold">AI_MENTOR</span>
                 </div>
                 
                 <div className="message-bubble p-4 rounded">
@@ -169,6 +174,8 @@ export default function Home() {
       </section>
       
       <QuotesSection />
+      <ScrollingQuotes />
+      <MotivationTracker />
       <ChatInterface />
       
       {/* Footer */}
@@ -180,8 +187,8 @@ export default function Home() {
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
         >
-          <GlitchText className="text-2xl font-mono">ЖИВОЙ</GlitchText>
-          <p className="opacity-60">Проект для тех, кто хочет жить, а не существовать</p>
+          <GlitchText className="text-2xl font-orbitron font-bold">ЖИВОЙ</GlitchText>
+          <p className="opacity-60 font-rajdhani text-lg">Проект для тех, кто хочет жить, а не существовать</p>
           <div className="flex justify-center space-x-6 text-sm">
             <span className="text-matrix">Made with chaos & love</span>
             <span className="text-acid">●</span>

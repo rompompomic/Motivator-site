@@ -1,5 +1,5 @@
 /* Font imports */
-@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Space+Grotesk:wght@300;400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Space+Grotesk:wght@300;400;500;700&family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -14,25 +14,25 @@
   --popover-foreground: hsl(0, 0%, 98%);
   --card: hsl(0, 0%, 10%);
   --card-foreground: hsl(0, 0%, 98%);
-  --border: hsl(120, 100%, 25%);
+  --border: hsl(120, 100%, 35%);
   --input: hsl(0, 0%, 10%);
-  --primary: hsl(120, 100%, 25%);
+  --primary: hsl(120, 100%, 35%);
   --primary-foreground: hsl(0, 0%, 5%);
   --secondary: hsl(0, 0%, 10%);
   --secondary-foreground: hsl(0, 0%, 98%);
-  --accent: hsl(120, 100%, 39%);
+  --accent: hsl(120, 100%, 50%);
   --accent-foreground: hsl(0, 0%, 5%);
   --destructive: hsl(0, 84%, 60%);
   --destructive-foreground: hsl(0, 0%, 98%);
-  --ring: hsl(120, 100%, 25%);
+  --ring: hsl(120, 100%, 35%);
   --radius: 0.5rem;
 
-  /* Custom glitch colors */
-  --matrix-green: hsl(120, 100%, 25%);
-  --acid-green: hsl(120, 100%, 39%);
-  --emerald-deep: hsl(165, 76%, 42%);
-  --glitch-pink: hsl(300, 100%, 50%);
-  --neon-yellow: hsl(60, 100%, 50%);
+  /* Custom glitch colors - brighter greens */
+  --matrix-green: hsl(120, 100%, 35%);
+  --acid-green: hsl(120, 100%, 50%);
+  --emerald-deep: hsl(165, 80%, 55%);
+  --glitch-pink: hsl(300, 100%, 60%);
+  --neon-yellow: hsl(60, 100%, 60%);
   --dark-bg: hsl(0, 0%, 5%);
   --dark-secondary: hsl(0, 0%, 10%);
 }
@@ -46,17 +46,17 @@
   --popover-foreground: hsl(0, 0%, 98%);
   --card: hsl(0, 0%, 10%);
   --card-foreground: hsl(0, 0%, 98%);
-  --border: hsl(120, 100%, 25%);
+  --border: hsl(120, 100%, 35%);
   --input: hsl(0, 0%, 10%);
-  --primary: hsl(120, 100%, 25%);
+  --primary: hsl(120, 100%, 35%);
   --primary-foreground: hsl(0, 0%, 5%);
   --secondary: hsl(0, 0%, 10%);
   --secondary-foreground: hsl(0, 0%, 98%);
-  --accent: hsl(120, 100%, 39%);
+  --accent: hsl(120, 100%, 50%);
   --accent-foreground: hsl(0, 0%, 5%);
   --destructive: hsl(0, 84%, 60%);
   --destructive-foreground: hsl(0, 0%, 98%);
-  --ring: hsl(120, 100%, 25%);
+  --ring: hsl(120, 100%, 35%);
 }
 
 @layer base {
@@ -114,10 +114,43 @@
     50% { opacity: 0.3; transform: translateY(-20px); }
   }
 
+  @keyframes pulse-glow {
+    0%, 100% { 
+      box-shadow: 0 0 5px hsl(120, 100%, 35%), 0 0 10px hsl(120, 100%, 35%);
+    }
+    50% { 
+      box-shadow: 0 0 15px hsl(120, 100%, 50%), 0 0 25px hsl(120, 100%, 50%);
+    }
+  }
+
+  @keyframes text-flicker {
+    0%, 18%, 22%, 25%, 53%, 57%, 100% {
+      text-shadow: 
+        0 0 4px #fff,
+        0 0 11px #fff,
+        0 0 19px #fff,
+        0 0 40px hsl(120, 100%, 50%),
+        0 0 80px hsl(120, 100%, 50%),
+        0 0 90px hsl(120, 100%, 50%),
+        0 0 100px hsl(120, 100%, 50%),
+        0 0 150px hsl(120, 100%, 50%);
+    }
+    20%, 24%, 55% {        
+      text-shadow: none;
+    }    
+  }
+
+  @keyframes matrix-rain {
+    0% { transform: translateY(-100vh); opacity: 0; }
+    10% { opacity: 1; }
+    90% { opacity: 1; }
+    100% { transform: translateY(100vh); opacity: 0; }
+  }
+
   /* Custom utility classes */
   .glitch-text {
     position: relative;
-    color: hsl(120, 100%, 25%);
+    color: hsl(120, 100%, 35%);
   }
   
   .glitch-text::before,
@@ -132,13 +165,13 @@
   
   .glitch-text::before {
     animation: glitch 0.3s infinite linear alternate-reverse;
-    color: hsl(300, 100%, 50%);
+    color: hsl(300, 100%, 60%);
     z-index: -1;
   }
   
   .glitch-text::after {
     animation: glitch 0.3s infinite linear alternate-reverse;
-    color: hsl(60, 100%, 50%);
+    color: hsl(60, 100%, 60%);
     z-index: -2;
     top: 2px;
     left: 2px;
@@ -163,8 +196,20 @@
   
   .brutal-shadow {
     box-shadow: 
-      8px 8px 0 hsl(120, 100%, 25%),
+      8px 8px 0 hsl(120, 100%, 35%),
       16px 16px 0 hsl(0, 0%, 10%);
+  }
+
+  .animate-pulse-glow {
+    animation: pulse-glow 2s ease-in-out infinite;
+  }
+
+  .animate-text-flicker {
+    animation: text-flicker 1.5s linear infinite;
+  }
+
+  .animate-matrix-rain {
+    animation: matrix-rain 3s linear infinite;
   }
   
   .chat-container {
@@ -186,10 +231,11 @@
   
   .neon-glow {
     text-shadow: 
-      0 0 5px hsl(120, 100%, 25%),
-      0 0 10px hsl(120, 100%, 25%),
-      0 0 15px hsl(120, 100%, 25%),
-      0 0 20px hsl(120, 100%, 25%);
+      0 0 5px hsl(120, 100%, 35%),
+      0 0 10px hsl(120, 100%, 35%),
+      0 0 15px hsl(120, 100%, 35%),
+      0 0 20px hsl(120, 100%, 35%),
+      0 0 30px hsl(120, 100%, 50%);
   }
   
   .distorted-block {
@@ -232,39 +278,39 @@
 
   /* Color utilities */
   .text-matrix {
-    color: hsl(120, 100%, 25%);
+    color: hsl(120, 100%, 35%);
   }
 
   .text-acid {
-    color: hsl(120, 100%, 39%);
+    color: hsl(120, 100%, 50%);
   }
 
   .text-emerald-deep {
-    color: hsl(165, 76%, 42%);
+    color: hsl(165, 80%, 55%);
   }
 
   .text-glitch-pink {
-    color: hsl(300, 100%, 50%);
+    color: hsl(300, 100%, 60%);
   }
 
   .text-neon-yellow {
-    color: hsl(60, 100%, 50%);
+    color: hsl(60, 100%, 60%);
   }
 
   .bg-matrix {
-    background-color: hsl(120, 100%, 25%);
+    background-color: hsl(120, 100%, 35%);
   }
 
   .bg-acid {
-    background-color: hsl(120, 100%, 39%);
+    background-color: hsl(120, 100%, 50%);
   }
 
   .bg-emerald-deep {
-    background-color: hsl(165, 76%, 42%);
+    background-color: hsl(165, 80%, 55%);
   }
 
   .bg-glitch-pink {
-    background-color: hsl(300, 100%, 50%);
+    background-color: hsl(300, 100%, 60%);
   }
 
   .bg-dark-bg {
@@ -276,19 +322,19 @@
   }
 
   .border-matrix {
-    border-color: hsl(120, 100%, 25%);
+    border-color: hsl(120, 100%, 35%);
   }
 
   .border-acid {
-    border-color: hsl(120, 100%, 39%);
+    border-color: hsl(120, 100%, 50%);
   }
 
   .border-emerald-deep {
-    border-color: hsl(165, 76%, 42%);
+    border-color: hsl(165, 80%, 55%);
   }
 
   .border-glitch-pink {
-    border-color: hsl(300, 100%, 50%);
+    border-color: hsl(300, 100%, 60%);
   }
 }
 
@@ -298,4 +344,12 @@
 
 .font-grotesk {
   font-family: 'Space Grotesk', sans-serif;
+}
+
+.font-orbitron {
+  font-family: 'Orbitron', sans-serif;
+}
+
+.font-rajdhani {
+  font-family: 'Rajdhani', sans-serif;
 }
