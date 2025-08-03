@@ -3,6 +3,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useOpenAIChat } from "@/hooks/use-openai-chat";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import aiAvatar from "@assets/generated_images/AI_robot_avatar_f3424969.png";
+import userAvatar from "@assets/generated_images/Cyberpunk_user_avatar_48f306aa.png";
 
 const suggestions = [
   "Не могу доделать проект",
@@ -110,7 +112,7 @@ export default function ChatInterface() {
                       </div>
                       <div className="w-8 h-8 bg-acid rounded-full flex items-center justify-center overflow-hidden">
                         <img 
-                          src="/attached_assets/generated_images/Cyberpunk_user_avatar_48f306aa.png" 
+                          src={userAvatar} 
                           alt="User Avatar" 
                           className="w-full h-full object-cover"
                         />
@@ -120,7 +122,7 @@ export default function ChatInterface() {
                     <div className="flex items-start space-x-3">
                       <div className="w-8 h-8 bg-matrix rounded-full flex items-center justify-center overflow-hidden">
                         <img 
-                          src="/attached_assets/generated_images/AI_robot_avatar_f3424969.png" 
+                          src={aiAvatar} 
                           alt="AI Avatar" 
                           className="w-full h-full object-cover"
                         />
@@ -147,7 +149,7 @@ export default function ChatInterface() {
                 <div className="flex items-start space-x-3">
                   <div className="w-8 h-8 bg-matrix rounded-full flex items-center justify-center overflow-hidden">
                     <img 
-                      src="/attached_assets/generated_images/AI_robot_avatar_f3424969.png" 
+                      src={aiAvatar} 
                       alt="AI Avatar" 
                       className="w-full h-full object-cover"
                     />

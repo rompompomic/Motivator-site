@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import chineseImage from "@assets/generated_images/Ancient_Chinese_landscape_photo_4dd09cea.png";
 
 const quotes = [
   {
@@ -28,7 +29,7 @@ const quotes = [
   {
     text: "Лучшее время посадить дерево было 20 лет назад. Второе лучшее время — сейчас.",
     author: "Китайская пословица",
-    image: "/attached_assets/generated_images/Ancient_Chinese_landscape_photo_4dd09cea.png",
+    image: chineseImage,
     color: "border-acid"
   },
   {
