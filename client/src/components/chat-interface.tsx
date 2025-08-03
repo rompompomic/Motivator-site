@@ -183,7 +183,7 @@ export default function ChatInterface() {
               />
               <button 
                 onClick={handleSend}
-                className="btn-3d text-dark-bg px-6 py-3 font-orbitron font-bold rounded-lg"
+                className="btn-3d text-dark-bg px-6 py-3 font-orbitron font-bold rounded-lg pt-[8px] pb-[8px]"
                 disabled={isLoading || !inputValue.trim()}
               >
                 Отправить
