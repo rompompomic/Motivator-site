@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import chineseImage from "@assets/generated_images/Ancient_Chinese_landscape_photo_4dd09cea.png";
+import edisonImage from "@assets/generated_images/Thomas_Edison_historical_portrait_937c5198.png";
 
 const quotes = [
   {
@@ -23,7 +24,7 @@ const quotes = [
   {
     text: "Я не терплю неудач. Я просто нахожу 10 000 способов, которые не работают.",
     author: "Томас Эдисон",
-    image: "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=400",
+    image: edisonImage,
     color: "border-glitch-pink"
   },
   {
