@@ -23,21 +23,27 @@ export default function Home() {
     // Ensure we start at the top
     window.scrollTo(0, 0);
 
-    // Enable smooth scroll after a brief delay
-    const timer = setTimeout(() => {
-      document.documentElement.classList.add('smooth-scroll');
-    }, 100);
-
-    // Disable heavy animations on mobile for performance
-    if (isMobile) {
-      document.body.classList.add('mobile-optimized');
+    // Enable smooth scroll after a brief delay on desktop only
+    if (!isMobile) {
+      const timer = setTimeout(() => {
+        document.documentElement.classList.add('smooth-scroll');
+      }, 100);
+      return () => {
+        clearTimeout(timer);
+        document.documentElement.classList.remove('smooth-scroll');
+      };
     }
 
-    return () => {
-      clearTimeout(timer);
-      document.documentElement.classList.remove('smooth-scroll');
-      document.body.classList.remove('mobile-optimized');
-    };
+    // Mobile optimizations
+    if (isMobile) {
+      document.body.classList.add('mobile-optimized');
+      // Disable complex CSS animations on mobile
+      document.documentElement.style.setProperty('--animation-duration', '0s');
+      return () => {
+        document.body.classList.remove('mobile-optimized');
+        document.documentElement.style.removeProperty('--animation-duration');
+      };
+    }
   }, [isMobile]);
 
   const parallaxElements = [
@@ -48,19 +54,19 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-dark-bg text-white overflow-x-hidden">
-      {/* Background Effects - Conditionally render based on device */}
+      {/* Background Effects - Desktop only for performance */}
       {!isMobile && <BackgroundVideo />}
       {!isMobile && <MatrixRain />}
-      <div className={`fixed inset-0 pointer-events-none z-10 ${!isMobile ? 'noise-bg vhs-lines digital-grid vhs-effect' : ''}`}></div>
+      {!isMobile && <div className="fixed inset-0 pointer-events-none z-10 noise-bg vhs-lines digital-grid vhs-effect"></div>}
       {!isMobile && <FloatingPhrases />}
-      <HeroPopup />
+      {!isMobile && <HeroPopup />}
       {!isMobile && <CustomCursor />}
       {!isMobile && <WatchingEye />}
       {!isMobile && <FilmGrain />}
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center justify-center px-4 py-20">
-        {/* Floating geometric shapes */}
-        {parallaxElements.map((element, index) => (
+        {/* Floating geometric shapes - Desktop only */}
+        {!isMobile && parallaxElements.map((element, index) => (
           <motion.div
             key={index}
             className={`absolute ${

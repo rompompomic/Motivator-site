@@ -21,6 +21,15 @@ function App() {
     // Reset scroll position on app load
     window.scrollTo(0, 0);
 
+    // Mobile performance optimizations
+    const isMobile = window.innerWidth < 768;
+    if (isMobile) {
+      // Disable hardware acceleration on mobile for better performance
+      document.body.style.transform = 'translateZ(0)';
+      document.body.style.backfaceVisibility = 'hidden';
+      document.body.style.perspective = '1000px';
+    }
+
     // Add mobile viewport fix
     const viewport = document.querySelector('meta[name=viewport]');
     if (viewport) {

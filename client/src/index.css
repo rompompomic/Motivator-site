@@ -72,7 +72,7 @@
   html {
     scroll-behavior: auto;
   }
-  
+
   html.smooth-scroll {
     scroll-behavior: smooth;
   }
@@ -88,7 +88,7 @@
     80% { transform: translate(2px, -2px); }
     100% { transform: translate(0); }
   }
-  
+
   @keyframes flicker {
     0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
       text-shadow: 
@@ -102,12 +102,12 @@
       text-shadow: none;
     }
   }
-  
+
   @keyframes float {
     0%, 100% { transform: translateY(0px); }
     50% { transform: translateY(-20px); }
   }
-  
+
   @keyframes noise {
     0%, 100% { opacity: 1; }
     50% { opacity: 0.8; }
@@ -156,7 +156,7 @@
     position: relative;
     color: hsl(120, 100%, 35%);
   }
-  
+
   .glitch-text::before,
   .glitch-text::after {
     content: attr(data-text);
@@ -166,13 +166,13 @@
     width: 100%;
     height: 100%;
   }
-  
+
   .glitch-text::before {
     animation: glitch 0.3s infinite linear alternate-reverse;
     color: hsl(300, 100%, 60%);
     z-index: -1;
   }
-  
+
   .glitch-text::after {
     animation: glitch 0.3s infinite linear alternate-reverse;
     color: hsl(60, 100%, 60%);
@@ -180,14 +180,14 @@
     top: 2px;
     left: 2px;
   }
-  
+
   .noise-bg {
     background-image: 
       radial-gradient(circle at 1px 1px, rgba(255,255,255,0.15) 1px, transparent 0);
     background-size: 20px 20px;
     animation: noise 0.2s infinite;
   }
-  
+
   .vhs-lines {
     background: repeating-linear-gradient(
       0deg,
@@ -197,7 +197,7 @@
       rgba(0, 255, 65, 0.03) 4px
     );
   }
-  
+
   .brutal-shadow {
     box-shadow: 
       8px 8px 0 hsl(120, 100%, 35%),
@@ -379,7 +379,7 @@
     80% { transform: translateX(2px); }
     100% { transform: translateX(0); }
   }
-  
+
   .chat-container {
     backdrop-filter: blur(10px);
     border: 2px solid hsl(120, 100%, 25%);
@@ -387,16 +387,16 @@
       0 0 20px hsl(120, 100%, 25%),
       inset 0 0 20px hsla(120, 100%, 25%, 0.1);
   }
-  
+
   .message-bubble {
     background: linear-gradient(135deg, hsl(0, 0%, 10%), hsl(0, 0%, 5%));
     border-left: 3px solid hsl(120, 100%, 25%);
   }
-  
+
   .floating-element {
     animation: float 6s ease-in-out infinite;
   }
-  
+
   .neon-glow {
     text-shadow: 
       0 0 5px hsl(120, 100%, 35%),
@@ -405,7 +405,7 @@
       0 0 20px hsl(120, 100%, 35%),
       0 0 30px hsl(120, 100%, 50%);
   }
-  
+
   .distorted-block {
     clip-path: polygon(0 0, 95% 0, 100% 100%, 5% 100%);
   }
@@ -434,40 +434,51 @@
   .custom-scrollbar::-webkit-scrollbar {
     width: 4px;
   }
-  
+
   .custom-scrollbar::-webkit-scrollbar-track {
     background: hsl(0, 0%, 10%);
   }
-  
+
   .custom-scrollbar::-webkit-scrollbar-thumb {
     background: hsl(120, 100%, 25%);
     border-radius: 2px;
   }
 
   /* Mobile optimizations */
-  @media (max-width: 768px) {
-    body.mobile-optimized * {
-      animation-duration: 0s !important;
-      animation-delay: 0s !important;
-      animation-iteration-count: 1 !important;
-      transition-duration: 0s !important;
-    }
+  .mobile-optimized * {
+  will-change: auto !important;
+  animation-duration: 0s !important;
+  transition-duration: 0s !important;
+}
 
-    body.mobile-optimized .animate-glitch,
-    body.mobile-optimized .animate-flicker,
-    body.mobile-optimized .animate-pulse-glow,
-    body.mobile-optimized .animate-text-flicker {
-      animation: none !important;
-    }
+.mobile-optimized .floating-element,
+.mobile-optimized .matrix-rain,
+.mobile-optimized .film-grain,
+.mobile-optimized .noise-bg {
+  display: none !important;
+}
 
-    .brutal-shadow {
-      box-shadow: 4px 4px 0 hsl(120, 100%, 35%) !important;
-    }
-
-    .neon-glow {
-      text-shadow: 0 0 10px hsl(120, 100%, 35%) !important;
-    }
+/* Disable expensive effects on mobile */
+@media (max-width: 768px) {
+  .glitch-text::before,
+  .glitch-text::after {
+    display: none;
   }
+
+  .neon-glow {
+    text-shadow: none !important;
+  }
+
+  .brutal-shadow {
+    box-shadow: none !important;
+  }
+
+  .animate-pulse,
+  .animate-ping,
+  .animate-flicker {
+    animation: none !important;
+  }
+}
 
   /* Color utilities */
   .text-matrix {
