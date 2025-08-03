@@ -7,6 +7,8 @@ import QuotesSection from "@/components/quotes-section";
 import BackgroundVideo from "@/components/background-video";
 import ScrollingQuotes from "@/components/scrolling-quotes";
 import MotivationTracker from "@/components/motivation-tracker";
+import MatrixRain from "@/components/matrix-rain";
+import HeroPopup from "@/components/hero-popup";
 
 export default function Home() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
@@ -30,9 +32,11 @@ export default function Home() {
     <div className="min-h-screen bg-dark-bg text-white overflow-x-hidden">
       {/* Background Effects */}
       <BackgroundVideo />
-      <div className="fixed inset-0 noise-bg vhs-lines pointer-events-none z-10"></div>
+      <MatrixRain />
+      <div className="fixed inset-0 noise-bg vhs-lines digital-grid vhs-effect pointer-events-none z-10"></div>
       
       <FloatingPhrases />
+      <HeroPopup />
       
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center justify-center px-4 py-20">
