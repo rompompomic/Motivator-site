@@ -231,6 +231,124 @@
     position: relative;
   }
 
+  /* Text stroke for readability */
+  .text-stroke {
+    text-shadow: 
+      -1px -1px 0 #000,
+      1px -1px 0 #000,
+      -1px 1px 0 #000,
+      1px 1px 0 #000,
+      -2px 0 0 #000,
+      2px 0 0 #000,
+      0 -2px 0 #000,
+      0 2px 0 #000;
+  }
+
+  /* Film grain texture overlay */
+  .film-grain {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 100;
+    background-image: 
+      radial-gradient(circle, transparent 1px, rgba(255,255,255,0.15) 1px);
+    background-size: 4px 4px;
+    mix-blend-mode: overlay;
+    opacity: 0.15;
+    animation: grain-animation 0.8s steps(10) infinite;
+  }
+
+  @keyframes grain-animation {
+    0%, 100% { transform: translate(0, 0) }
+    10% { transform: translate(-5%, -10%) }
+    20% { transform: translate(-15%, 5%) }
+    30% { transform: translate(7%, -25%) }
+    40% { transform: translate(-5%, 25%) }
+    50% { transform: translate(-15%, 10%) }
+    60% { transform: translate(15%, 0%) }
+    70% { transform: translate(0%, 15%) }
+    80% { transform: translate(3%, 35%) }
+    90% { transform: translate(-10%, 10%) }
+  }
+
+  /* Custom cursor */
+  body {
+    cursor: none;
+  }
+
+  .cursor-glow {
+    position: fixed;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #00ff41;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+    mix-blend-mode: difference;
+    animation: cursor-pulse 1s ease-in-out infinite;
+  }
+
+  @keyframes cursor-pulse {
+    0%, 100% { 
+      transform: scale(1);
+      box-shadow: 0 0 10px #00ff41;
+    }
+    50% { 
+      transform: scale(1.2);
+      box-shadow: 0 0 20px #00ff41, 0 0 30px #00ff41;
+    }
+  }
+
+  /* Watching eye in corner */
+  .watching-eye {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    width: 15px;
+    height: 15px;
+    background: #00ff41;
+    border-radius: 50%;
+    z-index: 1000;
+    animation: eye-blink 3s ease-in-out infinite;
+    box-shadow: 0 0 10px #00ff41;
+  }
+
+  @keyframes eye-blink {
+    0%, 90%, 100% { opacity: 1; }
+    95% { opacity: 0.3; }
+  }
+
+  /* 3D buttons */
+  .btn-3d {
+    background: linear-gradient(145deg, #00ff41, #00cc33);
+    border: none;
+    box-shadow: 
+      0 8px 15px rgba(0, 255, 65, 0.3),
+      inset 0 1px 0 rgba(255,255,255,0.2),
+      inset 0 -1px 0 rgba(0,0,0,0.2);
+    transform: translateY(0);
+    transition: all 0.15s ease;
+  }
+
+  .btn-3d:hover {
+    transform: translateY(-2px);
+    box-shadow: 
+      0 12px 20px rgba(0, 255, 65, 0.4),
+      inset 0 1px 0 rgba(255,255,255,0.3),
+      inset 0 -1px 0 rgba(0,0,0,0.3);
+  }
+
+  .btn-3d:active {
+    transform: translateY(1px);
+    box-shadow: 
+      0 4px 8px rgba(0, 255, 65, 0.2),
+      inset 0 1px 0 rgba(255,255,255,0.1),
+      inset 0 -1px 0 rgba(0,0,0,0.1);
+  }
+
   .vhs-effect::before {
     content: '';
     position: absolute;

@@ -148,13 +148,13 @@ export default function MotivationTracker() {
                 placeholder="Что ты хочешь сделать сегодня?"
                 className="flex-1 bg-dark-bg border-matrix text-white placeholder:text-gray-500 focus:border-acid"
               />
-              <Button 
+              <button 
                 onClick={addGoal}
-                className="bg-matrix text-dark-bg px-6 py-3 font-rajdhani font-bold hover:bg-acid"
+                className="btn-3d text-dark-bg px-6 py-3 font-rajdhani font-bold"
                 disabled={!newGoal.trim()}
               >
-                ✓ Добавить
-              </Button>
+                Добавить
+              </button>
             </div>
           </div>
 
@@ -186,7 +186,7 @@ export default function MotivationTracker() {
                         >
                           {goal.completed && '✓'}
                         </button>
-                        <span className={`flex-1 ${goal.completed ? 'text-gray-400' : 'text-white'}`}>
+                        <span className={`flex-1 text-stroke ${goal.completed ? 'text-gray-400' : 'text-white'}`}>
                           {goal.text}
                         </span>
                       </div>

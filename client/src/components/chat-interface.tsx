@@ -82,14 +82,12 @@ export default function ChatInterface() {
                 онлайн
               </motion.span>
             </div>
-            <Button
+            <button
               onClick={clearMessages}
-              variant="ghost"
-              size="sm"
-              className="text-red-400 hover:text-red-300 text-xs"
+              className="btn-3d text-dark-bg text-xs px-3 py-1 rounded font-rajdhani font-bold"
             >
-              🗑️ Очистить
-            </Button>
+              Очистить
+            </button>
           </div>
           
           {/* Chat Messages */}
@@ -110,14 +108,22 @@ export default function ChatInterface() {
                         <p className="text-sm text-acid mb-1 text-right">Ты</p>
                         <p className="bg-acid bg-opacity-20 p-3 rounded">{message.text}</p>
                       </div>
-                      <div className="w-8 h-8 bg-acid rounded-full flex items-center justify-center">
-                        👤
+                      <div className="w-8 h-8 bg-acid rounded-full flex items-center justify-center overflow-hidden">
+                        <img 
+                          src="/attached_assets/generated_images/Cyberpunk_user_avatar_48f306aa.png" 
+                          alt="User Avatar" 
+                          className="w-full h-full object-cover"
+                        />
                       </div>
                     </div>
                   ) : (
                     <div className="flex items-start space-x-3">
-                      <div className="w-8 h-8 bg-matrix rounded-full flex items-center justify-center">
-                        🤖
+                      <div className="w-8 h-8 bg-matrix rounded-full flex items-center justify-center overflow-hidden">
+                        <img 
+                          src="/attached_assets/generated_images/AI_robot_avatar_f3424969.png" 
+                          alt="AI Avatar" 
+                          className="w-full h-full object-cover"
+                        />
                       </div>
                       <div>
                         <p className={`text-sm mb-1 ${message.isError ? 'text-red-400' : 'text-matrix'}`}>
@@ -139,8 +145,12 @@ export default function ChatInterface() {
                 animate={{ opacity: 1, y: 0 }}
               >
                 <div className="flex items-start space-x-3">
-                  <div className="w-8 h-8 bg-matrix rounded-full flex items-center justify-center">
-                    🤖
+                  <div className="w-8 h-8 bg-matrix rounded-full flex items-center justify-center overflow-hidden">
+                    <img 
+                      src="/attached_assets/generated_images/AI_robot_avatar_f3424969.png" 
+                      alt="AI Avatar" 
+                      className="w-full h-full object-cover"
+                    />
                   </div>
                   <div>
                     <p className="text-sm text-matrix mb-1">AI</p>
@@ -166,16 +176,16 @@ export default function ChatInterface() {
                 onChange={(e) => setInputValue(e.target.value)}
                 onKeyPress={handleKeyPress}
                 placeholder="Напиши свой вопрос или проблему..."
-                className="flex-1 bg-dark-bg border-matrix text-white placeholder:text-gray-500 focus:border-acid"
+                className="flex-1 bg-dark-bg border-matrix text-white placeholder:text-gray-500 focus:border-acid text-stroke"
                 disabled={isLoading}
               />
-              <Button 
+              <button 
                 onClick={handleSend}
-                className="bg-matrix text-dark-bg px-6 py-3 font-mono font-bold hover:bg-acid"
+                className="btn-3d text-dark-bg px-6 py-3 font-orbitron font-bold"
                 disabled={isLoading || !inputValue.trim()}
               >
-                ✈️
-              </Button>
+                Отправить
+              </button>
             </div>
             <div className="flex items-center justify-between mt-2 text-xs opacity-60">
               <span>Нажми Enter для отправки</span>

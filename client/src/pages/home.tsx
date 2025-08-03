@@ -9,6 +9,9 @@ import ScrollingQuotes from "@/components/scrolling-quotes";
 import MotivationTracker from "@/components/motivation-tracker";
 import MatrixRain from "@/components/matrix-rain";
 import HeroPopup from "@/components/hero-popup";
+import CustomCursor from "@/components/custom-cursor";
+import WatchingEye from "@/components/watching-eye";
+import FilmGrain from "@/components/film-grain";
 
 export default function Home() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
@@ -37,6 +40,9 @@ export default function Home() {
       
       <FloatingPhrases />
       <HeroPopup />
+      <CustomCursor />
+      <WatchingEye />
+      <FilmGrain />
       
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center justify-center px-4 py-20">
@@ -76,10 +82,10 @@ export default function Home() {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.5 }}
           >
-            <p className="text-2xl md:text-3xl font-rajdhani font-light text-matrix mb-4 animate-flicker">
+            <p className="text-2xl md:text-3xl font-rajdhani font-light text-matrix mb-4 animate-flicker text-stroke">
               "Ты не обязан быть идеальным —
             </p>
-            <p className="text-2xl md:text-3xl font-rajdhani font-light text-acid">
+            <p className="text-2xl md:text-3xl font-rajdhani font-light text-acid text-stroke">
               ты обязан быть живым."
             </p>
           </motion.div>
@@ -130,7 +136,7 @@ export default function Home() {
                 ].map((item, index) => (
                   <motion.p 
                     key={index}
-                    className="brutal-shadow bg-dark-secondary p-6 font-rajdhani text-lg"
+                    className="brutal-shadow bg-dark-secondary p-6 font-rajdhani text-lg text-stroke"
                     initial={{ opacity: 0, y: 30, rotateX: -10 }}
                     whileInView={{ opacity: 1, y: 0, rotateX: 0 }}
                     whileHover={{ scale: 1.02, rotateX: 2 }}
@@ -192,7 +198,7 @@ export default function Home() {
           viewport={{ once: true }}
         >
           <GlitchText className="text-2xl font-orbitron font-bold">ЖИВОЙ</GlitchText>
-          <p className="opacity-60 font-rajdhani text-lg">Проект для тех, кто хочет жить, а не существовать</p>
+          <p className="opacity-60 font-rajdhani text-lg text-stroke">Проект для тех, кто хочет жить, а не существовать</p>
           <div className="flex justify-center space-x-6 text-sm">
             <span className="text-matrix">Made with chaos & love</span>
             <span className="text-acid">●</span>

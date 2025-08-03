@@ -28,7 +28,7 @@ const quotes = [
   {
     text: "Лучшее время посадить дерево было 20 лет назад. Второе лучшее время — сейчас.",
     author: "Китайская пословица",
-    image: "https://images.unsplash.com/photo-1566492031773-4f4e44671d66?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=400",
+    image: "/attached_assets/generated_images/Ancient_Chinese_landscape_photo_4dd09cea.png",
     color: "border-acid"
   },
   {
@@ -82,7 +82,7 @@ export default function QuotesSection() {
               />
               <blockquote className="text-center">
                 <motion.p 
-                  className="text-lg mb-4 italic font-rajdhani"
+                  className="text-lg mb-4 italic font-rajdhani text-stroke"
                   initial={{ opacity: 0 }}
                   whileInView={{ opacity: 1 }}
                   transition={{ duration: 0.6, delay: index * 0.3 + 0.5 }}
@@ -90,7 +90,7 @@ export default function QuotesSection() {
                   "{quote.text}"
                 </motion.p>
                 <motion.cite 
-                  className={`${quote.color.replace('border-', 'text-')} font-orbitron font-bold text-sm`}
+                  className={`${quote.color.replace('border-', 'text-')} font-orbitron font-bold text-sm text-stroke`}
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: index * 0.3 + 0.7 }}

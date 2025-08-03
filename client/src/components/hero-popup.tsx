@@ -55,7 +55,7 @@ export default function HeroPopup() {
     <AnimatePresence>
       {isVisible && (
         <motion.div
-          className="fixed z-50 pointer-events-none"
+          className="fixed z-5 pointer-events-none"
           style={{
             left: `${position.x}%`,
             top: `${position.y}%`,

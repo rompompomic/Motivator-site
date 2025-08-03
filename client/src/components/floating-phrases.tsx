@@ -76,7 +76,7 @@ export default function FloatingPhrases() {
   }, []);
 
   return (
-    <div className="fixed inset-0 pointer-events-none z-50">
+    <div className="fixed inset-0 pointer-events-none z-5">
       <AnimatePresence>
         {phrases.map((phrase) => (
           <motion.div
