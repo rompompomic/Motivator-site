@@ -13,10 +13,11 @@ import ScrollingQuotes from "@/components/scrolling-quotes";
 import ChatInterface from "@/components/chat-interface";
 import MotivationTracker from "@/components/motivation-tracker";
 import HeroPopup from "@/components/hero-popup";
-import { useEffect } from "react";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 export default function Home() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const isMobile = useIsMobile();
 
   useEffect(() => {
     // Ensure we start at the top
@@ -27,11 +28,17 @@ export default function Home() {
       document.documentElement.classList.add('smooth-scroll');
     }, 100);
 
+    // Disable heavy animations on mobile for performance
+    if (isMobile) {
+      document.body.classList.add('mobile-optimized');
+    }
+
     return () => {
       clearTimeout(timer);
       document.documentElement.classList.remove('smooth-scroll');
+      document.body.classList.remove('mobile-optimized');
     };
-  }, []);
+  }, [isMobile]);
 
   const parallaxElements = [
     { speed: 0.02, delay: 0 },
@@ -41,15 +48,15 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-dark-bg text-white overflow-x-hidden">
-      {/* Background Effects */}
-      <BackgroundVideo />
-      <MatrixRain />
-      <div className="fixed inset-0 noise-bg vhs-lines digital-grid vhs-effect pointer-events-none z-10"></div>
-      <FloatingPhrases />
+      {/* Background Effects - Conditionally render based on device */}
+      {!isMobile && <BackgroundVideo />}
+      {!isMobile && <MatrixRain />}
+      <div className={`fixed inset-0 pointer-events-none z-10 ${!isMobile ? 'noise-bg vhs-lines digital-grid vhs-effect' : ''}`}></div>
+      {!isMobile && <FloatingPhrases />}
       <HeroPopup />
-      <CustomCursor />
-      <WatchingEye />
-      <FilmGrain />
+      {!isMobile && <CustomCursor />}
+      {!isMobile && <WatchingEye />}
+      {!isMobile && <FilmGrain />}
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center justify-center px-4 py-20">
         {/* Floating geometric shapes */}
